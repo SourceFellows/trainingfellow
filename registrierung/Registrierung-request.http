@@ -1,0 +1,14 @@
+### Neue Registrierung
+POST https://localhost:8443/registrierung HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+Firstname=Peter&Lastname=Lustig&Email=peter.lustig@training-fellow.de&DatenschutzAkzeptiert=true&Schulungscode=GO.EINF&Datum=2024-10-24
+
+### Nicht bestätigte Registrierungen
+GET https://localhost:8443/confirmations HTTP/1.1
+
+### Registrierung bestätigen
+POST https://localhost:8443/confirmations HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+registrierungsID=5f11597e92fc94db1f7f009b

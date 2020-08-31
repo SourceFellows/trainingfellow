@@ -1,0 +1,31 @@
+version: '3'
+services:
+  registrierung:
+    image: training-fellow/registrierung
+    build: registrierung
+    ports:
+        - "8443:8443"
+  vorbereitung:
+    image: training-fellow/vorbereitung
+    build: vorbereitung
+    environment:
+      - NATS_URL=nats://nats:4222
+  nats:
+    image: nats
+  mongodb:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    volumes:
+      - ./mongo-db:/data/db
+    environment:
+     - MONGO_INITDB_DATABASE=mongodb
+     - MONGO_INITDB_ROOT_USERNAME=mongorootuser
+     - MONGO_INITDB_ROOT_PASSWORD=mongorootpw
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongorootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=mongorootpw
+    ports:
+      - 8081:8081

@@ -1,0 +1,38 @@
+{{ define "registrierung.tmpl" }}
+<html>
+    <h1>
+	{{ .title }}
+    </h1>
+    <form action="{{ .action }}" method="POST">
+
+
+        <label for="Firstname">Vorname:</label>
+        <input type="text" name="Firstname" maxlength="40" size="50" placeholder="Vorname" />
+
+        <label for="Lastname">Nachname:</label>
+        <input type="text" name="Lastname" maxlength="40" size="50" placeholder="Nachname" />
+
+        <label for="Email">Email:</label>
+        <input type="email" name="Email" maxlength="40" size="50" placeholder="Email" />
+
+        <label for="Firma">Firma:</label>
+        <input type="text" name="Firma" maxlength="40" size="50" placeholder="Firma" />
+
+        <label for="Schulungscode">Code:</label>
+        <input type="text" name="Schulungscode" maxlength="40" size="50" placeholder="Schulungscode" />
+
+        <label for="Datum">Datum:</label>
+        <input type="date" name="Datum" maxlength="40" size="50" placeholder="Datum" />
+
+        <label for="DatenschutzAkzeptiert">Datenschutz:</label>
+        <input type="checkbox" name="DatenschutzAkzeptiert" value="true"/>
+
+        <input type="submit"/>
+    </form>
+
+    <style>
+        input {display:block}
+    </style>
+
+</html>
+{{ end }}

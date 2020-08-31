@@ -1,0 +1,10 @@
+mongo:
+    url: mongodb://mongorootuser:mongorootpw@mongodb:27017
+    database: traiing-fellow
+    collection: registration
+nats:
+    url: nats://nats:4222
+server:
+    ssl:
+        certFile: "./certs/registrierung.tf.crt"
+        keyFile: "./certs/registrierung.tf.key"
