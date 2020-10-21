@@ -22,7 +22,7 @@ func (nn *notifier) InformAboutNewRegistrierung(registrierung *registrierung.Reg
 
 	nc, err := nats.Connect(nn.url)
 	if err != nil {
-		notifierLogger.Error("Could not connect to server: ", err)
+		notifierLogger.WithError(err).Error("Could not connect to server: ")
 		return err
 	}
 	defer nc.Close()
