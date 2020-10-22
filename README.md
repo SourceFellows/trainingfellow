@@ -14,7 +14,9 @@ Eine ausführliche Beschreibung der Anwendung befindet sich im Buch. Hier nur ku
 
 ## Start der Anwendung
 
-Die komplette Anwendung kann über Docker-Compose mit folgendem Kommando gestartet werden:
+Benötigt wird [Docker-Compose](https://docs.docker.com/compose/install/) und [Docker](https://www.docker.com/).
+
+Nach einer eventuell nötigen Installation und konfiguration kann die komplette Anwendung über Docker-Compose mit folgendem Kommando gestartet werden:
 
 ```
 docker-compose up
@@ -22,12 +24,18 @@ docker-compose up
 
 Daraufhin werden die Docker Container für die folgenden Services gestartet:
 
-* Registrierungs-Service
+* [Registrierungs-Service](registrierung)
 
-* Vorbereitungs-Service
+* [Vorbereitungs-Service](vorbereitung)
 
 * NATS-Server
 
 * MongoDB
 
 * Mongo-Express
+
+Testen kann man die Anwendung entweder über den [Browser](https://localhost:8443/registrierung) oder über den enthaltenen [Registrierungs-Client](registrierungclient).
+
+Erreichbar ist die Anwendung über https://localhost:8443/registrierung.
+Möchten Sie in die MongoDB schauen was gespeichert wurde, erreichen Sie diese unter http://localhost:8081.
+
