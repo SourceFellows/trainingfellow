@@ -1,6 +1,6 @@
 mongo:
     url: mongodb://mongorootuser:mongorootpw@mongodb:27017
-    database: traiing-fellow
+    database: training-fellow
     collection: registration
 nats:
     url: nats://nats:4222
