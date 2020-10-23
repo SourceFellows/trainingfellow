@@ -7,7 +7,8 @@ import (
 	"training-fellow.de/registrierung"
 )
 
-func NewNotifier(url string) *notifier {
+//NewNotifier erzeugt eine neue Instanz eines RegistrierungsNotifier für die Kommunikation mit NATS
+func NewNotifier(url string) registrierung.RegistrierungsNotifier {
 	return &notifier{url}
 }
 
@@ -15,6 +16,7 @@ type notifier struct {
 	url string
 }
 
+//InformAboutNewRegistrierung informiert über eine neue Registrierung
 func (nn *notifier) InformAboutNewRegistrierung(registrierung *registrierung.Registrierung) error {
 
 	notifierLogger := log.WithField("Registrierung", registrierung)

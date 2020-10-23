@@ -1,16 +1,19 @@
 package registrierung
 
+//RegistrierungsService stellt die Businessfunktionalität für Registrierungen bereit
 type RegistrierungsService struct {
 	Repository RegistrierungsRepository
 	Notifier   RegistrierungsNotifier
 }
 
+//HandleNewRegistrierung behandelte neue Registrierungen
 func (rs *RegistrierungsService) HandleNewRegistrierung(reg *Registrierung) error {
 	return rs.Repository.SaveRegistrierung(reg)
 }
 
-func (rs *RegistrierungsService) ConfirmRegistration(regId string) error {
-	registrierung, err := rs.Repository.ConfirmedRegistrierung(regId)
+//ConfirmRegistration bestätigt eine Registrierung
+func (rs *RegistrierungsService) ConfirmRegistration(regID string) error {
+	registrierung, err := rs.Repository.ConfirmedRegistrierung(regID)
 	if err != nil {
 		return err
 	}
@@ -18,6 +21,7 @@ func (rs *RegistrierungsService) ConfirmRegistration(regId string) error {
 	return rs.Notifier.InformAboutNewRegistrierung(registrierung)
 }
 
-func (rs *RegistrierungsService) GetUnconfirmedRegistrierung() ([]*Registrierung, error) {
-	return rs.Repository.GetUnconfirmedRegistrierung()
+//GetUnconfirmedRegistrierungen liefert alle noch nicht bestätigten Registrierungen
+func (rs *RegistrierungsService) GetUnconfirmedRegistrierungen() ([]*Registrierung, error) {
+	return rs.Repository.GetUnconfirmedRegistrierungen()
 }

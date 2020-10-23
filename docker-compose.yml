@@ -5,6 +5,7 @@ services:
     build: registrierung
     ports:
         - "8443:8443"
+        - "9900:9900"
   vorbereitung:
     image: training-fellow/vorbereitung
     build: vorbereitung

@@ -41,3 +41,4 @@ Testen kann man die Anwendung entweder über den [Browser](https://localhost:844
 Erreichbar ist die Anwendung über https://localhost:8443/registrierung.
 Möchten Sie in die MongoDB schauen was gespeichert wurde, erreichen Sie diese unter http://localhost:8081.
 
+Die Prometheus-Metriken können unter http://localhost:9090/metrics abgerufen werden.

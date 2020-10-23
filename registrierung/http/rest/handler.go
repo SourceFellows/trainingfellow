@@ -62,7 +62,7 @@ func NewRegistrationHandler(ser *registrierung.RegistrierungsService) gin.Handle
 func NewUnconfirmedListHandler(ser *registrierung.RegistrierungsService) gin.HandlerFunc {
 	return func(c *gin.Context) {
 
-		registrations, err := ser.GetUnconfirmedRegistrierung()
+		registrations, err := ser.GetUnconfirmedRegistrierungen()
 		if err != nil {
 			log.Errorf("Could not find unconfirmed registrations: %v", err)
 			c.Writer.WriteHeader(http.StatusInternalServerError)

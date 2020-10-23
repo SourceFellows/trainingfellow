@@ -12,6 +12,7 @@ import (
 	"training-fellow.de/registrierung"
 )
 
+//NewRepo erzeugt ein neues RegistrierungsRepository für MongoDB
 func NewRepo(url, database, collection string) registrierung.RegistrierungsRepository {
 	return &mongoDBRepositoy{url, collection, database}
 }
@@ -24,6 +25,7 @@ type mongoDBRepositoy struct {
 
 type mongoCall func(*mongo.Collection) error
 
+//SaveRegistrierung speichert die übergebene Registrierung
 func (m *mongoDBRepositoy) SaveRegistrierung(registrierung *registrierung.Registrierung) error {
 	fmt.Println("Save")
 
@@ -38,7 +40,8 @@ func (m *mongoDBRepositoy) SaveRegistrierung(registrierung *registrierung.Regist
 
 }
 
-func (m *mongoDBRepositoy) GetUnconfirmedRegistrierung() ([]*registrierung.Registrierung, error) {
+//GetUnconfirmedRegistrierungen lieferte eine Liste aller bestätigter Registrierungen
+func (m *mongoDBRepositoy) GetUnconfirmedRegistrierungen() ([]*registrierung.Registrierung, error) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
@@ -60,19 +63,21 @@ func (m *mongoDBRepositoy) GetUnconfirmedRegistrierung() ([]*registrierung.Regis
 	return registrations, err
 }
 
-func (m *mongoDBRepositoy) ConfirmedRegistrierung(registrierungsId string) (*registrierung.Registrierung, error) {
+//ConfirmedRegistrierung bestätigt eine Registrierung
+func (m *mongoDBRepositoy) ConfirmedRegistrierung(registrierungsID string) (*registrierung.Registrierung, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 	registrierung := &registrierung.Registrierung{}
 	err := m.executeInClient(ctx, func(collection *mongo.Collection) error {
 		result := collection.FindOneAndUpdate(ctx,
-			bson.M{"_id": registrierungsId},
+			bson.M{"_id": registrierungsID},
 			bson.M{"$set": bson.M{"confirmed": true}})
 		return result.Decode(&registrierung)
 	})
 	return registrierung, err
 }
 
+//Template Funktion zum Ausführen von MongoDB Aufrufen
 func (m *mongoDBRepositoy) executeInClient(ctx context.Context, callback mongoCall) error {
 	client, err := mongo.NewClient(
 		options.Client().
